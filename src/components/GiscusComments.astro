@@ -1,0 +1,61 @@
+<section
+  id="comments"
+  class="mt-12"
+  aria-labelledby="comments-heading"
+  data-pagefind-ignore
+>
+  <div data-giscus-container></div>
+</section>
+
+<script>
+  const GISCUS_ORIGIN = "https://giscus.app";
+
+  function getGiscusTheme(): "light" | "dark" {
+    return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  }
+
+  function loadGiscus(): void {
+    const container = document.querySelector<HTMLElement>(
+      "[data-giscus-container]"
+    );
+    if (!container || container.querySelector(".giscus-frame, script")) return;
+
+    const script = document.createElement("script");
+    script.src = `${GISCUS_ORIGIN}/client.js`;
+    script.dataset.repo = "qiyangdev/astro-paper";
+    script.dataset.repoId = "R_kgDOTXCbKw";
+    script.dataset.category = "Announcements";
+    script.dataset.categoryId = "DIC_kwDOTXCbK84DBJkR";
+    script.dataset.mapping = "pathname";
+    script.dataset.strict = "0";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "bottom";
+    script.dataset.theme = getGiscusTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    script.async = true;
+    container.appendChild(script);
+  }
+
+  function syncGiscusTheme(): void {
+    const frame = document.querySelector<HTMLIFrameElement>(
+      "iframe.giscus-frame"
+    );
+    frame?.contentWindow?.postMessage(
+      { giscus: { setConfig: { theme: getGiscusTheme() } } },
+      GISCUS_ORIGIN
+    );
+  }
+
+  // The blog theme is stored independently from the OS preference, so keep
+  // the embedded iframe aligned with changes to the root data-theme attribute.
+  const themeObserver = new MutationObserver(syncGiscusTheme);
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+
+  loadGiscus();
+  document.addEventListener("astro:page-load", loadGiscus);
+</script>
