@@ -1,5 +1,5 @@
 {
-  "Frontmatter": {
+  "Post frontmatter": {
     "scope": "markdown",
     "prefix": "frontmatter",
     "body": [
@@ -15,20 +15,18 @@
       "description: $8",
       "---",
     ],
-    "description": "Adds the frontmatter block for the AstroPaper Blog post",
+    "description": "Add frontmatter for a blog post",
   },
-  "Blog Template": {
+  "Post template": {
     "scope": "markdown",
-    "prefix": "template",
+    "prefix": "post-template",
     "body": [
       "${1:frontmatter}",
       "",
-      "${2: Introductory Sentence}",
+      "${2:Introduction}",
       "",
-      "## Table of contents",
-      "",
-      "## ${3: heading 1}",
+      "## ${3:Heading}",
     ],
-    "description": "Adds the template for the AstroPaper Blog post. You will need to trigger the snippet modal on the 'frontmatter' line to insert the other snipper.",
+    "description": "Add a basic blog post outline",
   },
 }

@@ -218,36 +218,93 @@ const ogImage = ogImageUrl
   function attachCopyButtons() {
     const copyButtonLabel = "Copy";
     const codeBlocks = Array.from(document.querySelectorAll("pre"));
+    const buttonClass =
+      "rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
 
     for (const codeBlock of codeBlocks) {
-      const wrapper = document.createElement("div");
-      wrapper.style.position = "relative";
+      if (codeBlock.parentElement?.hasAttribute("data-code-block-wrapper")) {
+        continue;
+      }
 
+      const previewId = codeBlock.getAttribute("data-mermaid-preview");
+      const preview = previewId ? document.getElementById(previewId) : null;
       const computedStyle = getComputedStyle(codeBlock);
-      const hasFileNameOffset =
-        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+      const fileNameOffset = computedStyle
+        .getPropertyValue("--file-name-offset")
+        .trim();
+      const hasFileNameOffset = fileNameOffset !== "";
 
       const topClass = hasFileNameOffset
         ? "top-(--file-name-offset)"
         : "-top-3";
 
-      const copyButton = document.createElement("button");
-      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
-      copyButton.innerHTML = copyButtonLabel;
-      codeBlock.setAttribute("tabindex", "0");
-      codeBlock.appendChild(copyButton);
+      const wrapper = document.createElement("div");
+      wrapper.dataset.codeBlockWrapper = "";
+      wrapper.style.position = "relative";
 
-      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      for (const property of [
+        "--shiki-light",
+        "--shiki-dark",
+        "--shiki-light-bg",
+        "--shiki-dark-bg",
+      ]) {
+        const value = computedStyle.getPropertyValue(property).trim();
+        if (value) wrapper.style.setProperty(property, value);
+      }
+
+      if (hasFileNameOffset) {
+        wrapper.style.setProperty("--file-name-offset", fileNameOffset);
+      }
+
+      codeBlock.parentNode?.insertBefore(wrapper, codeBlock);
       wrapper.appendChild(codeBlock);
+      if (preview) wrapper.appendChild(preview);
+
+      const controls = document.createElement("div");
+      controls.className = `absolute end-3 ${topClass} z-10 flex gap-2`;
+
+      if (preview) {
+        const previewButton = document.createElement("button");
+        previewButton.type = "button";
+        previewButton.className = `preview-code ${buttonClass}`;
+        previewButton.innerText = preview.hidden ? "Preview" : "Code";
+        previewButton.setAttribute("aria-controls", preview.id);
+        previewButton.setAttribute("aria-pressed", String(!preview.hidden));
+        previewButton.setAttribute(
+          "aria-label",
+          preview.hidden ? "Preview Mermaid diagram" : "Show Mermaid source"
+        );
+        controls.appendChild(previewButton);
+
+        previewButton.addEventListener("click", () => {
+          const showPreview = preview.hidden;
+          codeBlock.hidden = showPreview;
+          preview.hidden = !showPreview;
+          previewButton.innerText = showPreview ? "Code" : "Preview";
+          previewButton.setAttribute("aria-pressed", String(showPreview));
+          previewButton.setAttribute(
+            "aria-label",
+            showPreview ? "Show Mermaid source" : "Preview Mermaid diagram"
+          );
+        });
+      }
+
+      const copyButton = document.createElement("button");
+      copyButton.type = "button";
+      copyButton.className = `copy-code ${buttonClass}`;
+      copyButton.innerText = copyButtonLabel;
+      copyButton.setAttribute("aria-label", "Copy code");
+      controls.appendChild(copyButton);
+      wrapper.appendChild(controls);
+      codeBlock.setAttribute("tabindex", "0");
 
       copyButton.addEventListener("click", async () => {
         await copyCode(codeBlock, copyButton);
       });
     }
 
-    async function copyCode(block, button) {
-      const code = block.querySelector("code");
-      const text = code?.innerText;
+    async function copyCode(codeBlock, button) {
+      const text = codeBlock.querySelector("code")?.innerText;
 
       await navigator.clipboard.writeText(text ?? "");
 

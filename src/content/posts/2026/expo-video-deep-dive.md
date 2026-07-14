@@ -13,4 +13,15 @@ Here are some explore about package expo-video.
 
 ## Intro
 
-![expo-video-arch](@/assets/images/expo-video-arch.svg)
+
+```mermaid
+flowchart LR
+  S["VideoSource"] --> H["useVideoPlayer"]
+  H --> P["VideoPlayer SharedObject"]
+  P --> I["iOS AVPlayer"]
+  P --> A["Android ExoPlayer"]
+  P --> W["Web HTMLVideoElement"]
+  P --> V["VideoView"]
+  P --> E["Event System"]
+  E --> R["useEvent / useEventListener"]
+```

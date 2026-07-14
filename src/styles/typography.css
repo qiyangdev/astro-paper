@@ -93,6 +93,24 @@
     pre {
       @apply focus-visible:outline-accent focus-visible:border-transparent focus-visible:outline-2 focus-visible:outline-dashed;
     }
+
+    .mermaid-diagram {
+      @apply my-[1.71429em] w-full rounded-[.375rem] px-[1.14286em] py-[.857143em] text-[.875em] leading-[1.71429];
+      background-color: var(--shiki-light-bg, var(--background));
+      color: var(--shiki-light, var(--foreground));
+
+      .mermaid-diagram-scroll {
+        @apply p-0;
+      }
+
+      svg {
+        @apply mx-auto block h-auto max-w-full;
+      }
+
+      text {
+        font-family: var(--font-app) !important;
+      }
+    }
   }
 
   /* Katex text color */
@@ -101,12 +119,27 @@
   }
 
   /* ===== Code Blocks & Syntax Highlighting ===== */
+  .astro-code,
+  .mermaid-diagram {
+    @apply outline-border border;
+  }
+
   .astro-code {
-    @apply outline-border flex border bg-(--shiki-light-bg) text-(--shiki-light) [&_span]:text-(--shiki-light);
+    @apply flex bg-(--shiki-light-bg) text-(--shiki-light) [&_span]:text-(--shiki-light);
   }
 
   html[data-theme="dark"] .astro-code {
     @apply bg-(--shiki-dark-bg) text-(--shiki-dark) [&_span]:text-(--shiki-dark);
+  }
+
+  html[data-theme="dark"] .mermaid-diagram {
+    background-color: var(--shiki-dark-bg, var(--background));
+    color: var(--shiki-dark, var(--foreground));
+  }
+
+  .astro-code[hidden],
+  .mermaid-diagram[hidden] {
+    display: none;
   }
 
   /* Styles for Shiki transformers */

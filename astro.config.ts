@@ -20,14 +20,17 @@ import { transformerFileName } from "./src/utils/transformers/fileName";
 import config from "./astro-paper.config";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import { remarkBeautifulMermaid } from "./src/utils/remark/beautifulMermaid";
+import { transformerMermaidPreview } from "./src/utils/transformers/mermaidPreview";
+import { standaloneMermaidLanguage } from "./src/utils/shiki/standaloneMermaid";
 
 export default defineConfig({
   site: config.site.url,
   integrations: [
     mdx(),
     sitemap({
-    filter: page =>
-      config.features?.showArchives !== false || !page.endsWith("/archives/"),
+      filter: page =>
+        config.features?.showArchives !== false || !page.endsWith("/archives/"),
     }),
   ],
   i18n: {
@@ -40,6 +43,7 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [
+        remarkBeautifulMermaid,
         remarkMath,
         remarkToc,
         [remarkCollapse, { test: "Table of contents" }],
@@ -47,11 +51,13 @@ export default defineConfig({
       rehypePlugins: [rehypeCallouts, rehypeKatex],
     }),
     shikiConfig: {
+      langs: [standaloneMermaidLanguage],
       themes: { light: "min-light", dark: "night-owl" },
       defaultColor: false,
       wrap: false,
       transformers: [
         transformerFileName({ style: "v2", hideDot: false }),
+        transformerMermaidPreview(),
         transformerNotationHighlight(),
         transformerNotationWordHighlight(),
         transformerNotationDiff({ matchAlgorithm: "v3" }),
