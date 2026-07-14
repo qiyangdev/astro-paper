@@ -18,14 +18,16 @@ import {
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import config from "./astro-paper.config";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 export default defineConfig({
   site: config.site.url,
   integrations: [
     mdx(),
     sitemap({
-      filter: page =>
-        config.features?.showArchives !== false || !page.endsWith("/archives/"),
+    filter: page =>
+      config.features?.showArchives !== false || !page.endsWith("/archives/"),
     }),
   ],
   i18n: {
@@ -38,10 +40,11 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [
+        remarkMath,
         remarkToc,
         [remarkCollapse, { test: "Table of contents" }],
       ],
-      rehypePlugins: [rehypeCallouts],
+      rehypePlugins: [rehypeCallouts, rehypeKatex],
     }),
     shikiConfig: {
       themes: { light: "min-light", dark: "night-owl" },
