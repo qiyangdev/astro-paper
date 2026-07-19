@@ -23,10 +23,10 @@ const currentYear = new Date().getFullYear();
   >
     <Socials />
     <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
+      <OnlineVisitors label={t.footer.onlineVisitors} />
       <span>{t.footer.copyright} &#169; {currentYear}</span>
       <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
       <span>{t.footer.allRightsReserved}</span>
-      <OnlineVisitors label={t.footer.onlineVisitors} />
     </div>
   </div>
 </footer>
