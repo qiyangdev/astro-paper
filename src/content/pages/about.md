@@ -16,3 +16,9 @@ description: "关于我，以及我为什么写这个博客。"
 ## 保持联系
 
 你可以通过 [GitHub](https://github.com/qiyangdev)、[X](https://x.com/qiyangdev) 或 [LinkedIn](https://www.linkedin.com/in/wangqiyagn/) 关注我，也可以直接给我发[邮件](mailto:wangqiyangx@gmail.com)。
+
+## 隐私与统计
+
+本站由 Vercel 托管，并使用 Umami 进行匿名访问统计，以了解文章阅读情况并改进内容。匿名统计不使用 Cookie，不记录站内搜索内容，本站也不会主动收集姓名、邮箱等身份信息。
+
+文章评论由 Giscus 和 GitHub 提供；使用评论功能时，相关数据将按照它们各自的隐私政策处理。

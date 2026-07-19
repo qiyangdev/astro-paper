@@ -117,6 +117,17 @@ export default defineConfig({
         context: "client",
         optional: true,
       }),
+      PUBLIC_UMAMI_SCRIPT_URL: envField.string({
+        access: "public",
+        context: "client",
+        default: "https://cloud.umami.is/script.js",
+        url: true,
+      }),
+      PUBLIC_UMAMI_WEBSITE_ID: envField.string({
+        access: "public",
+        context: "client",
+        default: "782d2000-b3aa-4c57-9654-928a79c43972",
+      }),
     },
   },
   experimental: {

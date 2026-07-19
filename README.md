@@ -33,6 +33,18 @@ The local site is available at `http://localhost:4321`.
 - Site settings: `astro-paper.config.ts`
 - Static assets: `public/`
 
+## Analytics
+
+The production site uses Umami for privacy-friendly traffic and content
+analytics. Its public defaults are defined in `astro.config.ts`; deployments
+can override them with:
+
+- `PUBLIC_UMAMI_SCRIPT_URL`
+- `PUBLIC_UMAMI_WEBSITE_ID`
+
+Development mode and hostnames other than the canonical site domain are not
+tracked.
+
 ## License
 
 The underlying AstroPaper code is available under the [MIT License](LICENSE).
