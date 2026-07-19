@@ -1,59 +1,51 @@
 ---
 pubDatetime: 2026-07-15T19:09:36.000+08:00
-title: "Reflections on AI-Assisted Coding"
+title: "关于 AI 辅助编程的一些反思"
 tags:
   - AI
-  - Programming
-  - Learning
-description: "Reflections on six months of using AI coding tools, and the difference between writing more code and becoming a better developer."
+  - 编程
+  - 学习
+description: "使用 AI 编程工具半年后的一些反思：写出更多代码，并不等于成为更好的开发者。"
 ---
 
-> After all, you only find out who is swimming naked when the tide goes out. — Warren Buffett[^buffett-quote]
+高强度使用 AI 编程工具[^ai-coding-tools]半年后，我开始回头审视这段时间的工作。东西确实做了不少，可真正沉淀到自己身上的，又有多少？
 
-After using AI coding tools[^ai-coding-tools] extensively for six months, I started looking back at my work. I built many things, but I also wanted to know how much I had really learned.
+对我来说，AI 编程工具很像游戏里的一件橙装[^legendary-item]。它或许不容易获得，却没有等级门槛；几乎任何玩家穿上它，都能立刻打出可观的伤害。只是这件装备有一个特殊词条：击败敌人后，玩家拿不到经验值。
 
-For me, an AI coding tool is like a legendary item[^legendary-item] in a game. It is not easy to get, but it has no level requirement. Almost any player can equip it and immediately deal very serious damage. However, this item has a special rule: the player gets no experience points after defeating an enemy.
+这个比喻并不严谨，却恰好道出了我的一层担忧：AI 编程工具可以大幅提升产出，却未必能让使用者的能力同步增长。
 
-This comparison is not perfect, but it describes one concern I have. AI coding tools can greatly improve our output, but they do not always improve our own ability.
+## 总归是借来的力量
 
-## Borrowed power
+借助 AI 编程工具，开发者可以更快地熟悉陌生代码库、实现新功能、排查构建失败，或完成枯燥的迁移工作。它带来的价值毋庸置疑：既节省时间，也让我们有机会处理过去可能无从下手的问题。
 
-With an AI coding tool, a developer can explore an unfamiliar codebase, write a feature, find the reason for a build failure, or finish a boring migration much faster than before. This value is real. These tools save time and allow us to work on problems that may have been too difficult before.
+但产出变多和能力变强，终究不是一回事。
 
-But better output and better skills are not the same thing.
+在游戏里，真正的差距往往要等到 PVP[^pvp] 对局中卸下那件特殊装备时才会显现。放到软件开发中，这一刻可能出现在生产事故、棘手的并发问题，或没有标准答案的架构决策里；也可能出现在 AI 不断生成看似正确、实则有误的代码时。一旦 AI 工具也无能为力，开发者能依靠的，只剩自己的知识和判断。
 
-In a game, the difference becomes clear when the special item is removed during a PVP match.[^pvp] In software development, this moment may come during a production incident, a difficult concurrency bug, or an architecture decision without a clear answer. It can also happen when the AI keeps producing code that looks correct but is actually wrong. When the tool cannot solve the problem, the developer has to depend on their own knowledge.
+不是说用 AI 工具会让开发者退步，关键问题在于能力增长的速度可能跟不上产出的增长。过去我们常常要花很长时间啃下一个问题，也正是在这个过程中逐渐理解它。如今，AI 可以帮我们跳过许多艰难的环节，但随之被跳过的，也可能包括一些重要的学习过程。
 
-This does not mean that using AI makes a developer less capable. The problem is that our skills may not grow as fast as our output. In the past, spending a long time on a problem often helped us understand it deeply. Today, AI can help us skip this difficult process. At the same time, we may also skip some important learning.
+## AI 的产出不等于个人的成长
 
-## Productivity is not progress
+AI 容易让人产生一种错觉：只要给足上下文、用够 token，再多追问一轮，就没有解决不了的问题。但我发现事实并非如此。我仍然需要决定要做什么、弄清关键边界、发现细微错误，并对最终结果负责——就像互联网上调侃的那样。
 
-AI can make us feel that every problem is solvable if we provide enough context, use enough tokens,[^tokens], or try one more prompt. But this is not always true. We still need to decide what to build, understand the important limits, notice small mistakes, and take responsibility for the final result.
+工具写代码比我快，也能写出一些我独自完成不了的代码，但这并不意味着我真正理解了它们。
 
-The tool can write code faster than I can. It can also write code that I could not write by myself. But this does not mean that I understand the code.
+这种差距很容易被海量的 diff 掩盖。项目提交记录变多了，feature 变多了，做完的实验性项目也更多了；陌生细节带来的阻碍则越来越少。然而，项目可以一路向前，我似乎仍旧在原地踏步。
 
-It is easy to ignore this difference. We can see more commits, more features, and more completed experiments. We also spend less time being blocked by unfamiliar details. However, a project can improve while the developer learns very little.
+回看过去半年，我消耗了数量惊人的 token，却没有感受到与之相称的成长。我最初写代码，只是因为喜欢。在 vibe coding 一切的氛围里，每个念头都能迅速变成一个新任务、一个原型，或一个 PR。久而久之，编程越来越像工作，不再像一项爱好。
 
-Looking back on the past six months, I used a very large number of tokens, but I did not feel the same amount of personal growth. I started coding because I enjoyed it. In the atmosphere of vibe coding,[^vibe-coding] every idea can quickly become a new task, prototype, or pull request. After some time, coding started to feel more like work than a hobby. I found this a little ironic.
+这对我来说多少有些唏嘘。
 
-## Keeping the experience points
+## 主动吸取经验值
 
-For me, the answer is not to stop using AI coding tools. They are useful, and refusing to use them does not automatically make someone a better developer. The real challenge is to use these tools without giving the whole learning process to AI.
+对我来说，思考的答案并不是拒绝使用 AI 编程工具，毕竟停用它也不会自动让我成为一个更好的开发者。
 
-I can pause before accepting an answer and trace the code path by myself. I can try to predict the reason for a failure before asking AI to explain it. I can also rewrite an explanation in my own words. Sometimes, I should solve a problem without AI and accept that it may take more time. Most importantly, I should understand the generated code instead of only making sure that it works.
+在接受 AI 给出的答案之前，或许可以先停下来自己梳理一遍代码路径；遇到错误时，也可以先尝试判断原因，再让 AI 给出解释。我还可以用自己的话重新整理它的回答。偶尔，我也应该在不借助 AI 的情况下解决问题，并接受这可能会花费更多时间。最重要的是，需要理解生成的代码，而不只是保证其能够运行就满意了。
 
-AI can remove many difficulties from programming, but these difficulties were not always a waste of time. They helped us build experience, judgment, and confidence. If I remove all of them, I may finish more tasks, but become less ready for problems that AI cannot solve.
+AI 可以消除编程中的许多困难，但这些困难并不全是无意义的。正是在与它们周旋的过程中，我们能够逐渐积累经验、判断力和信心。如果把所有困难都交出去，或许能完成更多任务，却会更难应对那些 AI 也解决不了的问题。
 
-The tide will go out one day. I do not need to throw away the equipment, but I should make sure that I can still swim without it.
+[^ai-coding-tools]: 本文所说的“AI 编程工具”，是指基于大语言模型、能够根据自然语言指令生成、解释、审查或修改代码的软件。
 
-[^buffett-quote]: This sentence appears in Warren Buffett's [2001 letter to Berkshire Hathaway shareholders](https://www.berkshirehathaway.com/letters/2001pdf.pdf). It was originally used to discuss hidden risks in the insurance industry.
+[^legendary-item]: 在许多游戏中，传奇装备通常指稀有且强力的装备；不同游戏对它的名称和稀有度划分并不相同。
 
-[^ai-coding-tools]: In this article, “AI coding tools” means software based on large language models that can generate, explain, review, or modify code through natural-language instructions.
-
-[^legendary-item]: In many games, a legendary item is a rare and powerful piece of equipment. The exact name and rarity level are different in each game.
-
-[^pvp]: PVP means “player versus player.” It describes a game mode in which players compete directly against other players instead of computer-controlled enemies.
-
-[^tokens]: Tokens are small units of text processed by a language model. Token usage is often used to measure how much input and output the model has processed. It is not a direct measurement of learning or useful work.
-
-[^vibe-coding]: Here, “vibe coding” means a style of programming that depends heavily on natural-language prompts and AI-generated code, with more attention on getting a result quickly than understanding every implementation detail.
+[^pvp]: PVP 是“玩家对战玩家”（player versus player）的缩写，指玩家直接与其他玩家对抗，而不是与电脑控制的敌人战斗。

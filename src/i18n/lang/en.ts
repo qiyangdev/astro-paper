@@ -38,8 +38,8 @@ export default {
     allRightsReserved: "All rights reserved.",
   },
   pages: {
-    tagTitle: "Tag",
-    tagDesc: "All the articles with the tag",
+    tagTitle: "Tag: {{tag}}",
+    tagDesc: 'All articles tagged "{{tag}}".',
 
     tagsTitle: "Tags",
     tagsDesc: "All the tags used in posts.",

@@ -1,5 +1,3 @@
-import { renderMermaidSVG } from "beautiful-mermaid";
-
 type MarkdownNode = {
   type: string;
   value?: string;
@@ -8,23 +6,11 @@ type MarkdownNode = {
   children?: MarkdownNode[];
 };
 
-const googleFontsImport =
-  /\s*@import url\('[^']*fonts\.googleapis\.com[^']*'\);/;
-
-function renderDiagram(source: string) {
-  return renderMermaidSVG(source, {
-    bg: "var(--background)",
-    fg: "var(--foreground)",
-    accent: "var(--accent)",
-    font: "Google Sans Code",
-    transparent: true,
-  })
-    .replace(googleFontsImport, "")
-    .replace(
-      "<svg ",
-      '<svg role="img" aria-label="Mermaid diagram" focusable="false" '
-    );
-}
+const escapeHtml = (value: string) =>
+  value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
 
 function transformMermaidBlocks(
   node: MarkdownNode,
@@ -44,7 +30,7 @@ function transformMermaidBlocks(
         child,
         {
           type: "html",
-          value: `<figure id="${previewId}" class="mermaid-diagram"><div class="mermaid-diagram-scroll">${renderDiagram(source)}</div></figure>`,
+          value: `<figure id="${previewId}" class="mermaid-diagram"><div class="mermaid-diagram-scroll"><div class="mermaid">${escapeHtml(source)}</div></div></figure>`,
         },
       ];
     }
@@ -54,7 +40,7 @@ function transformMermaidBlocks(
   });
 }
 
-export function remarkBeautifulMermaid() {
+export function remarkMermaid() {
   return (tree: MarkdownNode) => {
     let previewIndex = 0;
     transformMermaidBlocks(tree, () => `mermaid-preview-${previewIndex++}`);

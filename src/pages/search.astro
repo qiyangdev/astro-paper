@@ -77,6 +77,18 @@ const t = useTranslations(locale);
       const search = new PagefindUI({
         element: "#pagefind-search",
         bundlePath,
+        translations: {
+          language: "zh-CN",
+          search_label: "站内搜索",
+          placeholder: "搜索文章……",
+          clear_search: "清除",
+          filters_label: "筛选条件",
+          searching: "正在搜索“[SEARCH_TERM]”……",
+          zero_results: "未找到与“[SEARCH_TERM]”相关的结果",
+          one_result: "找到 [COUNT] 条与“[SEARCH_TERM]”相关的结果",
+          many_results: "找到 [COUNT] 条与“[SEARCH_TERM]”相关的结果",
+          load_more: "加载更多",
+        },
         showImages: false,
         showSubResults: true,
         processTerm: function (term: string) {

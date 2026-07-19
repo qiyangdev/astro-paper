@@ -3,10 +3,10 @@ import { defineAstroPaperConfig } from "./src/types/config";
 export default defineAstroPaperConfig({
   site: {
     url: "https://blog.qiyang.dev/",
-    title: "Qiyang's Blog",
-    description: "A blog about web development, programming, and technology.",
-    author: "Qiyang",
-    lang: "en",
+    title: "启阳的博客",
+    description: "一个关于 Web 开发、编程与技术的博客。",
+    author: "启阳",
+    lang: "zh-CN",
     timezone: "Asia/Shanghai",
     dir: "ltr",
   },

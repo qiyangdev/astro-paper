@@ -4,6 +4,7 @@
   aria-labelledby="comments-heading"
   data-pagefind-ignore
 >
+  <h2 id="comments-heading" class="sr-only">评论</h2>
   <div data-giscus-container></div>
 </section>
 
@@ -32,7 +33,7 @@
     script.dataset.emitMetadata = "0";
     script.dataset.inputPosition = "bottom";
     script.dataset.theme = getGiscusTheme();
-    script.dataset.lang = "en";
+    script.dataset.lang = "zh-CN";
     script.crossOrigin = "anonymous";
     script.async = true;
     container.appendChild(script);

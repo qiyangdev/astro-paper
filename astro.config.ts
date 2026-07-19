@@ -16,13 +16,18 @@ import {
   transformerNotationHighlight,
   transformerNotationWordHighlight,
 } from "@shikijs/transformers";
+import { transformerTwoslash } from "@shikijs/twoslash";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import config from "./astro-paper.config";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import { remarkBeautifulMermaid } from "./src/utils/remark/beautifulMermaid";
+import { remarkMermaid } from "./src/utils/remark/mermaid";
 import { transformerMermaidPreview } from "./src/utils/transformers/mermaidPreview";
 import { standaloneMermaidLanguage } from "./src/utils/shiki/standaloneMermaid";
+import {
+  renderTwoslashMarkdown,
+  renderTwoslashMarkdownInline,
+} from "./src/utils/shiki/renderTwoslashMarkdown";
 
 export default defineConfig({
   site: config.site.url,
@@ -34,8 +39,8 @@ export default defineConfig({
     }),
   ],
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    locales: ["zh-CN"],
+    defaultLocale: "zh-CN",
     routing: {
       prefixDefaultLocale: false,
     },
@@ -43,10 +48,10 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [
-        remarkBeautifulMermaid,
+        remarkMermaid,
         remarkMath,
-        remarkToc,
-        [remarkCollapse, { test: "Table of contents" }],
+        [remarkToc, { heading: "目录" }],
+        [remarkCollapse, { test: "目录", summary: "展开目录" }],
       ],
       rehypePlugins: [rehypeCallouts, rehypeKatex],
     }),
@@ -56,6 +61,33 @@ export default defineConfig({
       defaultColor: false,
       wrap: false,
       transformers: [
+        transformerTwoslash({
+          explicitTrigger: true,
+          rendererRich: {
+            renderMarkdown: renderTwoslashMarkdown,
+            renderMarkdownInline: renderTwoslashMarkdownInline,
+            hast: {
+              popupTypes: {
+                tagName: "span",
+                children(children) {
+                  const pre = children.length === 1 ? children[0] : undefined;
+                  const code =
+                    pre?.type === "element" && pre.tagName === "pre"
+                      ? pre.children[0]
+                      : undefined;
+
+                  return code?.type === "element" && code.tagName === "code"
+                    ? code.children
+                    : children;
+                },
+              },
+              hoverToken: { properties: { tabIndex: 0 } },
+              hoverPopup: { properties: { role: "tooltip" } },
+              queryToken: { properties: { tabIndex: 0 } },
+              queryPopup: { properties: { role: "tooltip" } },
+            },
+          },
+        }),
         transformerFileName({ style: "v2", hideDot: false }),
         transformerMermaidPreview(),
         transformerNotationHighlight(),
@@ -69,12 +101,12 @@ export default defineConfig({
   },
   fonts: [
     {
-      name: "Google Sans Code",
-      cssVariable: "--font-google-sans-code",
+      name: "Noto Serif SC",
+      cssVariable: "--font-noto-serif-sc",
       provider: fontProviders.google(),
-      fallbacks: ["monospace"],
+      fallbacks: ["serif"],
       weights: [300, 400, 500, 600, 700],
-      styles: ["normal", "italic"],
+      styles: ["normal"],
       formats: ["woff", "ttf"],
     },
   ],

@@ -13,10 +13,6 @@
       @apply text-foreground mb-3;
     }
 
-    h3 {
-      @apply italic;
-    }
-
     p,
     strong,
     ol,
@@ -101,6 +97,15 @@
 
       .mermaid-diagram-scroll {
         @apply p-0;
+      }
+
+      .mermaid:not([data-processed]) {
+        visibility: hidden;
+      }
+
+      .mermaid-render-error {
+        @apply whitespace-pre-wrap;
+        visibility: visible;
       }
 
       svg {

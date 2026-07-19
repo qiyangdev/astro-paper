@@ -1,18 +1,18 @@
 ---
-title: "About"
-description: "Learn more about Qiyang and the ideas behind this blog."
+title: "关于"
+description: "关于我，以及我为什么写这个博客。"
 ---
 
-Hi, I'm Qiyang, a software developer who enjoys building thoughtful apps and tools, exploring new technologies, and turning ideas into useful products.
+你好，我是启阳，一名软件开发者。我喜欢构建简洁实用的应用和工具，也乐于探索新技术，把想法一步步变成可用的产品。
 
-I care about creating software that feels simple, reliable, and enjoyable to use. I am always learning, experimenting, and looking for better ways to solve problems.
+我在意软件是否可靠、易用，也享受反复打磨细节的过程。学习、实践和复盘，是我不断改进工作方式的主要途径。
 
-## About this blog
+## 关于这个博客
 
-This blog is where I document what I learn and share ideas from my work. You will find articles about web development, programming, technology, and the process of building software.
+这个博客用于记录我在工作和学习中的思考与收获，内容主要涉及 Web 开发、编程、技术，以及软件从想法到落地的过程。
 
-Writing helps me think more clearly, preserve useful discoveries, and connect with people who share similar interests. I hope something here inspires you or helps you solve a problem of your own.
+对我来说，写作既是梳理思路的一种方式，也是保存经验、与他人交流的途径。如果其中某篇文章能给你一点启发，或帮你少走一些弯路，那就再好不过了。
 
-## Let's connect
+## 保持联系
 
-You can find me on [GitHub](https://github.com/qiyangdev), [X](https://x.com/qiyangdev), and [LinkedIn](https://www.linkedin.com/in/wangqiyagn/), or reach me by [email](mailto:wangqiyangx@gmail.com).
+你可以通过 [GitHub](https://github.com/qiyangdev)、[X](https://x.com/qiyangdev) 或 [LinkedIn](https://www.linkedin.com/in/wangqiyagn/) 关注我，也可以直接给我发[邮件](mailto:wangqiyangx@gmail.com)。

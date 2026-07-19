@@ -2,6 +2,7 @@
 @import "./theme.css";
 @import "./typography.css";
 @import "rehype-callouts/theme/obsidian";
+@import "@shikijs/twoslash/style-rich.css";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
@@ -35,4 +36,55 @@
 
 :target {
   scroll-margin-block: 1rem;
+}
+
+[data-theme="dark"] {
+  --twoslash-popup-bg: var(--background);
+  --twoslash-popup-color: var(--foreground);
+  --twoslash-popup-shadow: rgba(0, 0, 0, 0.3) 0 2px 8px;
+}
+
+.twoslash .twoslash-popup-container {
+  max-width: min(28rem, calc(100vw - 2rem));
+  translate: var(--twoslash-popup-offset-x, 0) 0;
+  white-space: normal;
+  width: max-content;
+}
+
+.twoslash .twoslash-popup-code {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.twoslash .twoslash-docs-code-block {
+  display: block;
+  margin-top: 0.5em;
+  border-radius: 0.25rem;
+  background: var(--twoslash-highlighted-bg);
+  padding: 0.5em 0.75em;
+  font-family: var(--twoslash-code-font);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.twoslash .twoslash-docs-paragraph {
+  display: block;
+}
+
+.twoslash .twoslash-docs-inline-code {
+  border-radius: 0.2rem;
+  background: var(--twoslash-highlighted-bg);
+  padding-inline: 0.25em;
+  font-family: var(--twoslash-code-font);
+}
+
+.twoslash .twoslash-hover:focus-within .twoslash-popup-container {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.twoslash .twoslash-hover:focus-visible {
+  outline: 2px dashed var(--accent);
+  outline-offset: 2px;
 }
