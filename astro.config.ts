@@ -54,6 +54,18 @@ export default defineConfig({
         [remarkCollapse, { test: "目录", summary: "展开目录" }],
       ],
       rehypePlugins: [rehypeCallouts, rehypeKatex],
+      remarkRehype: {
+        footnoteLabel: "参考资料",
+        footnoteLabelTagName: "h2",
+        footnoteLabelProperties: {},
+        footnoteBackLabel(referenceIndex: number, rereferenceIndex: number) {
+          const footnoteNumber = referenceIndex + 1;
+
+          return rereferenceIndex > 1
+            ? `返回正文中的第 ${footnoteNumber} 个脚注的第 ${rereferenceIndex} 处引用`
+            : `返回正文中的第 ${footnoteNumber} 个脚注引用`;
+        },
+      },
     }),
     shikiConfig: {
       langs: [standaloneMermaidLanguage],
