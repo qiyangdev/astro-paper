@@ -1,6 +1,8 @@
 # Qiyang's Blog
 
-The source for [qiyang.dev](https://qiyang.dev), a personal blog about software development, programming, and technology.
+[**English**](README.md) | [简体中文](README.zh-CN.md)
+
+The source for [blog.qiyang.dev](https://blog.qiyang.dev/), a personal blog about software development, programming, and technology.
 
 The site is built with [Astro](https://astro.build/) and based on [AstroPaper](https://github.com/satnaing/astro-paper). It supports Markdown and MDX posts, syntax highlighting, Mermaid diagrams, math notation, Pagefind search, RSS, and generated Open Graph images.
 
@@ -42,10 +44,9 @@ tracker script defaults to the public Umami Cloud instance in
 - `UMAMI_URL`
 - `UMAMI_WEBSITE_ID`
 
-The production deployment sets `UMAMI_URL` to `https://umami.qiyang.dev` and
-`UMAMI_WEBSITE_ID` to
-`3c71eee3-8bac-4ddc-9186-d63009bb7ea7`. The website ID has no code-level
-default and is shared by the tracker and online visitor counter.
+The production deployment provides these values through environment variables.
+The website ID has no code-level default and is shared by the tracker and online
+visitor counter.
 
 The footer can also show the number of visitors active in the last five
 minutes. Add a self-hosted Umami bearer token as the server-only Vercel
