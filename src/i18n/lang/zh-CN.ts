@@ -36,6 +36,7 @@ export default {
   footer: {
     copyright: "版权所有",
     allRightsReserved: "保留所有权利。",
+    onlineVisitors: "最近 5 分钟访客：{{count}}",
   },
   pages: {
     tagTitle: "标签：{{tag}}",

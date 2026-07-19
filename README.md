@@ -35,12 +35,23 @@ The local site is available at `http://localhost:4321`.
 
 ## Analytics
 
-The production site uses Umami for privacy-friendly traffic and content
-analytics. Its public defaults are defined in `astro.config.ts`; deployments
-can override them with:
+The site uses Umami for privacy-friendly traffic and content analytics. The
+tracker script defaults to the public Umami Cloud instance in
+`astro.config.ts`; deployments configure it with:
 
-- `PUBLIC_UMAMI_SCRIPT_URL`
-- `PUBLIC_UMAMI_WEBSITE_ID`
+- `UMAMI_URL`
+- `UMAMI_WEBSITE_ID`
+
+The production deployment sets `UMAMI_URL` to `https://umami.qiyang.dev` and
+`UMAMI_WEBSITE_ID` to
+`3c71eee3-8bac-4ddc-9186-d63009bb7ea7`. The website ID has no code-level
+default and is shared by the tracker and online visitor counter.
+
+The footer can also show the number of visitors active in the last five
+minutes. Add a self-hosted Umami bearer token as the server-only Vercel
+environment variable `UMAMI_API_TOKEN` to enable it. The `/api/online`
+function derives its API endpoint from `UMAMI_URL`. The token must never use a
+`PUBLIC_` prefix.
 
 Development mode and hostnames other than the canonical site domain are not
 tracked.

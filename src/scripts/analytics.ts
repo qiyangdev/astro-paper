@@ -1,7 +1,4 @@
-import {
-  PUBLIC_UMAMI_SCRIPT_URL,
-  PUBLIC_UMAMI_WEBSITE_ID,
-} from "astro:env/client";
+import { UMAMI_URL, UMAMI_WEBSITE_ID } from "astro:env/client";
 
 type AnalyticsValue = string | number | boolean;
 type AnalyticsData = Record<string, AnalyticsValue>;
@@ -103,10 +100,10 @@ function handleTrackerReady(): void {
 }
 
 function installTracker(): void {
-  if (!PUBLIC_UMAMI_SCRIPT_URL || !PUBLIC_UMAMI_WEBSITE_ID) return;
+  if (!UMAMI_URL || !UMAMI_WEBSITE_ID) return;
 
   const existing = document.querySelector<HTMLScriptElement>(
-    `script[data-website-id="${PUBLIC_UMAMI_WEBSITE_ID}"]`
+    `script[data-website-id="${UMAMI_WEBSITE_ID}"]`
   );
   if (existing) {
     if (getTracker()) handleTrackerReady();
@@ -116,8 +113,8 @@ function installTracker(): void {
 
   const script = document.createElement("script");
   script.defer = true;
-  script.src = PUBLIC_UMAMI_SCRIPT_URL;
-  script.dataset.websiteId = PUBLIC_UMAMI_WEBSITE_ID;
+  script.src = `${UMAMI_URL.replace(/\/+$/, "")}/script.js`;
+  script.dataset.websiteId = UMAMI_WEBSITE_ID;
   script.dataset.autoTrack = "false";
 
   const hostname = getSiteHostname();
@@ -258,7 +255,7 @@ function handlePageLoad(): void {
 
 export function initializeAnalytics(): void {
   if (initialized || !import.meta.env.PROD) return;
-  if (!PUBLIC_UMAMI_SCRIPT_URL || !PUBLIC_UMAMI_WEBSITE_ID) return;
+  if (!UMAMI_URL || !UMAMI_WEBSITE_ID) return;
 
   initialized = true;
   document.addEventListener("astro:page-load", handlePageLoad);

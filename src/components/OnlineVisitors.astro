@@ -1,0 +1,84 @@
+---
+type Props = {
+  label: string;
+};
+
+const { label } = Astro.props;
+---
+
+<span
+  data-online-visitors
+  data-label={label}
+  class="text-muted-foreground inline-flex items-center"
+  role="status"
+  aria-live="polite"
+  aria-atomic="true"
+  hidden
+>
+  <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
+  <span
+    class="mr-1.5 size-1.5 rounded-full bg-green-600 dark:bg-green-400"
+    aria-hidden="true"></span>
+  <span data-online-visitors-text></span>
+</span>
+
+<script>
+  const REFRESH_INTERVAL = 60_000;
+
+  type OnlineVisitorsResponse = {
+    visitors?: unknown;
+  };
+
+  let refreshTimer: number | undefined;
+  let activeRequest: AbortController | undefined;
+
+  async function refreshOnlineVisitors(): Promise<void> {
+    const indicator = document.querySelector<HTMLElement>(
+      "[data-online-visitors]"
+    );
+    const text = indicator?.querySelector<HTMLElement>(
+      "[data-online-visitors-text]"
+    );
+    const label = indicator?.dataset.label;
+    if (!indicator || !text || !label) return;
+
+    const request = new AbortController();
+    activeRequest?.abort();
+    activeRequest = request;
+
+    try {
+      const response = await fetch("/api/online", {
+        headers: { Accept: "application/json" },
+        signal: request.signal,
+      });
+      if (!response.ok) return;
+
+      const data = (await response.json()) as OnlineVisitorsResponse;
+      if (
+        typeof data.visitors !== "number" ||
+        !Number.isInteger(data.visitors) ||
+        data.visitors < 0
+      ) {
+        return;
+      }
+
+      text.textContent = label.replace("{{count}}", String(data.visitors));
+      indicator.hidden = false;
+    } catch {
+      // Keep the indicator hidden, or retain the last successful value.
+    } finally {
+      if (activeRequest === request) activeRequest = undefined;
+    }
+  }
+
+  function setupOnlineVisitors(): void {
+    if (refreshTimer !== undefined) window.clearInterval(refreshTimer);
+    activeRequest?.abort();
+
+    void refreshOnlineVisitors();
+    refreshTimer = window.setInterval(refreshOnlineVisitors, REFRESH_INTERVAL);
+  }
+
+  setupOnlineVisitors();
+  document.addEventListener("astro:after-swap", setupOnlineVisitors);
+</script>
