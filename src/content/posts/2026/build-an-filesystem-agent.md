@@ -4,8 +4,9 @@ title: 基于 AI SDK 构建一个文件系统 Agent
 tags:
   - Agent
 description: 基于 AI SDK，利用 bash 工具和 Vercel Sandbox 来实现一个能够探索制定文件内容并回答问题的文件系统 Agent。
-draft: true
 ---
+
+> 本文是 [Building Filesystem Agents](https://vercel.com/academy/filesystem-agents) 的阅读笔记
 
 现代大语言模型已经高度适应了“文件 + 目录 + Shell”的工作方式。
 
